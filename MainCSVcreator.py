@@ -14,7 +14,7 @@ def get_resources(url_end, csv_filename, docname,keyword):
     global resources
     resources = Dataset.get_all_resources(datasets)
     # Only uncomment if you want to download file!!
-    url, path = resources[0].download('/Users/katherinenewcomb/Desktop/TestingRepo')
+    url, path = resources[0].download('/Users/katherinenewcomb/Desktop/TestingRepo/censusfiles')
     print('Resource URL %s downloaded to %s' % (url, path))
 
 

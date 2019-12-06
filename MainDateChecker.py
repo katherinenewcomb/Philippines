@@ -4,6 +4,7 @@ from hdx.data.dataset import Dataset
 from hdx.hdx_configuration import Configuration
 import shutil
 import glob
+import os, sys
 
 def get_new_date(urlend, docname):
     # Gets specific url for indicated category
@@ -44,11 +45,12 @@ def compare_dates(csvname,urlend,filename,docname,keyword):
     datasets = Dataset.search_in_hdx(docname, rows=10)
     resources = Dataset.get_all_resources(datasets)
     if d2 > d1:
-        url, path = resources[0].download('/Users/katherinenewcomb/Desktop/TestingRepo/censusfiles')
+        url, path = resources[0].download('/Users/katherinenewcomb/Desktop/TestingRepo')
         print('Resource URL %s downloaded to %s' % (url, path))
-        f= open('/Users/katherinenewcomb/Desktop/TestingRepo/censusfiles/{}'.format(csvname),"w+")
+        f= open('/Users/katherinenewcomb/Desktop/TestingRepo/{}'.format(csvname),"w+")
         f.write(dataset.get_dataset_date())
         shutil.move('/Users/katherinenewcomb/Desktop/TestingRepo/{}'.format(filename),'/Users/katherinenewcomb/Desktop/TestingRepo/ArchiveData/{}'.format(filename))
+        os.rename('/Users/katherinenewcomb/Desktop/TestingRepo/{}'.format(filename),'/Users/katherinenewcomb/Desktop/TestingRepo/ArchiveData/{}'.format(filename))
         newfile = glob.glob('/Users/katherinenewcomb/Desktop/TestingRepo/*{}*'.format(keyword))
         print(newfile)
     else:

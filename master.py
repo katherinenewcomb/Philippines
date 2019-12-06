@@ -2,13 +2,14 @@ import os
 import csv
 import pandas as pd
 from openpyxl import load_workbook, Workbook
+import xlrd
 
 # (Brad) Need to change filepath
 # Divides XLSX tabs
 # keyword - XLSX original downloaded file
 # outpath - sheet name + '.xlsx' (saved to multiple files)
-def divide_tabs(keyword,outpath):
-    wb = load_workbook(filename='/Users/katherinenewcomb/Desktop/TestingRepo/Philippines/ConnectFiles/*{}*'.format(keyword))
+def divide_tabs(xlsxoriginal):
+    wb = load_workbook(filename=xlsxoriginal)
 
     for sheet in wb.worksheets:
         new_wb = Workbook()
@@ -17,7 +18,7 @@ def divide_tabs(keyword,outpath):
             for row_cell in row_data:
                 ws[row_cell.coordinate].value = row_cell.value
 
-        new_wb.save(outpath.format(sheet.title))
+        new_wb.save('/Users/katherinenewcomb/Desktop/TestingRepo/{0}.xlsx'.format(sheet.title))
 
 # xlsxpath - specific xls sheet name (from divided tabs)
 # sheetname - usually 'Sheet 1', name of tab in original file
@@ -73,19 +74,17 @@ def merge_files(file1, file2, geoID1, geoID2, outpath):
     df_merge_difkey.to_csv(outpath, sep=',')
 
 # (Brad) Need to change filepath
-def connect_xlsx_files(original_filename,keyword,xlsx_outpath,sheetname,csvpath,colname_removeRow,identifier,removed_row_outpath,colname_csv_edit,edited_csv_outpath,gadmFile,gadm_colname,merged_outpath):
+def connect_xlsx_files(original_filename,xlsxoriginal,xlsx_divided_tab,sheetname,xlsx_to_csv,colname_csv_edit,edited_csv_outpath,gadmFile,gadm_colname,merged_outpath):
     filepath = r'/Users/katherinenewcomb/Desktop/TestingRepo/censusfiles/'+(original_filename)
     if filepath.endswith('.XLSX'):
-        divide_tabs(keyword,xlsx_outpath)
-        csv_from_excel(xlsxpath,sheetname,csvpath)
-        remove_row(csvpath,colname_removeRow,identifier,removed_row_outpath)
-        csv_editor(removed_row_outpath,colname_csv_edit,edited_csv_outpath)
+        divide_tabs(xlsxoriginal)
+        csv_from_excel(xlsx_divided_tab,sheetname,xlsx_to_csv)
+        csv_editor(xlsx_to_csv,colname_csv_edit,edited_csv_outpath)
         merge_files(gadmFile,edited_csv_outpath,colname_csv_edit,gadm_colname,merged_outpath)
         print(filepath)
     elif filepath.endswith('.xlsx'):
         divide_tabs(keyword,xlsx_outpath)
         csv_from_excel(xlsxpath,sheetname,csvpath)
-        remove_row(csvpath,colname_removeRow,identifier,removed_row_outpath)
         csv_editor(removed_row_outpath,colname_csv_edit,edited_csv_outpath)
         merge_files(gadmFile,edited_csv_outpath,colname_csv_edit,gadm_colname,merged_outpath)
         print(filepath)
