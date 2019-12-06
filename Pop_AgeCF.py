@@ -1,7 +1,7 @@
 from master import *
 
-connect_xlsx_files('180814_Philippines Population Admin 1 to 3_2015_vertical.xlsx2.XLSX',
-'/Users/katherinenewcomb/Desktop/TestingRepo/Philippines/ConnectFiles/180814_Philippines Population Admin 1 to 3_2015_vertical.xlsx2.XLSX',
+connect_xlsx_files('180814_Philippines Population Admin 1 to 3_2015_vertical.xlsx.XLSX',
+'180814_Philippines Population Admin 1 to 3_2015_vertical.xlsx.XLSX',
 '/Users/katherinenewcomb/Desktop/TestingRepo/Municipality.xlsx',
 'Sheet',
 '/Users/katherinenewcomb/Desktop/TestingRepo/PopAge_Mun.csv',

@@ -6,6 +6,8 @@ import shutil
 import glob
 import os, sys
 
+# Every file path ("/Users/katherinenewcomb"..etc) needs to be changed to fit computer
+
 def get_new_date(urlend, docname):
     # Gets specific url for indicated category
     Configuration.create(hdx_site='prod', user_agent='A_Quick_Example', hdx_read_only=True)
@@ -50,9 +52,9 @@ def compare_dates(csvname,urlend,filename,docname,keyword):
         f= open('/Users/katherinenewcomb/Desktop/TestingRepo/{}'.format(csvname),"w+")
         f.write(dataset.get_dataset_date())
         shutil.move('/Users/katherinenewcomb/Desktop/TestingRepo/{}'.format(filename),'/Users/katherinenewcomb/Desktop/TestingRepo/ArchiveData/{}'.format(filename))
-        os.rename('/Users/katherinenewcomb/Desktop/TestingRepo/{}'.format(filename),'/Users/katherinenewcomb/Desktop/TestingRepo/ArchiveData/{}'.format(filename))
         newfile = glob.glob('/Users/katherinenewcomb/Desktop/TestingRepo/*{}*'.format(keyword))
-        print(newfile)
+        os.rename(glob.glob('/Users/katherinenewcomb/Desktop/TestingRepo/*{}*'.format('poverty-statistic'))[0], '/Users/katherinenewcomb/Desktop/TestingRepo/'+(filename))
+        # print(newfile)
     else:
         newfile = "No new file"
         print(newfile)

@@ -9,7 +9,7 @@ import xlrd
 # keyword - XLSX original downloaded file
 # outpath - sheet name + '.xlsx' (saved to multiple files)
 def divide_tabs(xlsxoriginal):
-    wb = load_workbook(filename=xlsxoriginal)
+    wb = load_workbook(filename='/Users/katherinenewcomb/Desktop/TestingRepo/'+(xlsxoriginal))
 
     for sheet in wb.worksheets:
         new_wb = Workbook()
@@ -75,7 +75,7 @@ def merge_files(file1, file2, geoID1, geoID2, outpath):
 
 # (Brad) Need to change filepath
 def connect_xlsx_files(original_filename,xlsxoriginal,xlsx_divided_tab,sheetname,xlsx_to_csv,colname_csv_edit,edited_csv_outpath,gadmFile,gadm_colname,merged_outpath):
-    filepath = r'/Users/katherinenewcomb/Desktop/TestingRepo/censusfiles/'+(original_filename)
+    filepath = r'/Users/katherinenewcomb/Desktop/TestingRepo/Philippines/ConnectFiles/'+(original_filename)
     if filepath.endswith('.XLSX'):
         divide_tabs(xlsxoriginal)
         csv_from_excel(xlsx_divided_tab,sheetname,xlsx_to_csv)

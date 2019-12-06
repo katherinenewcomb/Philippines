@@ -1,7 +1,7 @@
 from master import *
 
-connect_xlsx_files('190710_poverty-statistics.xlsx1.XLSX',
-'/Users/katherinenewcomb/Desktop/TestingRepo/Philippines/ConnectFiles/190710_poverty-statistics.xlsx1.XLSX',
+connect_xlsx_files('190710_poverty-statistics.xlsx.XLSX',
+'/Users/katherinenewcomb/Desktop/TestingRepo/Philippines/ConnectFiles/190710_poverty-statistics.xlsx.XLSX',
 'Poverty_City_Mun_2009,2012,2015.xlsx',
 'Sheet',
 'Poverty_Mun.csv',
